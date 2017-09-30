@@ -4,6 +4,9 @@ import java.util.List;
 
 public class Node implements ObserverI, SubjectI {
 	
+	Node leftNode;
+	Node rightNode;
+	
 	int bNumber;
 	List<String> courses;
 	
