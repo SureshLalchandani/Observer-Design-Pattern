@@ -30,6 +30,7 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 		this.courses = new ArrayList<String>();
 	}
 	
+	
 	/**
 	 * Add course against this Node's BNumber.
 	 * @param course
@@ -45,6 +46,10 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 	 */
 	public boolean removeCourse(String course) {
 		return courses.remove(course);
+	}
+	
+	public void merge(Node node) {
+		
 	}
 	
 
@@ -98,5 +103,29 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 		
 		return node;
 	}
+	
+	/*Getter & Setter Methods*/
+	
+	public int getbNumber() {
+		return bNumber;
+	}
+	
+	public Node getLeftNode() {
+		return leftNode;
+	}
+	
+	public void setLeftNode(Node leftNode) {
+		this.leftNode = leftNode;
+	}
+	
+	public Node getRightNode() {
+		return rightNode;
+	}
+	
+	
+	public void setRightNode(Node rightNode) {
+		this.rightNode = rightNode;
+	}
+	
 	
 }
