@@ -4,11 +4,19 @@ import studentCoursesBackup.myTree.Node;
 
 public class TreeBuilder {
 	
-	Node rootNode;
+	Node rootNode; 
+	
+	public TreeBuilder() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	
-	public void add(int bNumber, String course) {
+	public Node add(Node root, int bNumber, String course) {
+		if(root == null) {
+			root = new Node(bNumber);
+		}
 		
+		return root;
 	}
 	
 	public void delete(int bNumber, String course) {

@@ -1,10 +1,7 @@
 package studentCoursesBackup.myTree;
 
-import java.util.List;
-
 public interface SubjectI {
 	
-	List<ObserverI> observers;
 	
 	/**
 	 * Register an observer to listen and get notified if any change occurs in current
