@@ -6,8 +6,8 @@ public class TreeBuilder {
 	
 	Node rootNode; 
 	
-	public TreeBuilder() {
-		// TODO Auto-generated constructor stub
+	public void setRootNode(Node rootNode) {
+		this.rootNode = rootNode;
 	}
 	
 	public void addNode(Node node) {
