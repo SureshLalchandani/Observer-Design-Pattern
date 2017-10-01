@@ -35,7 +35,9 @@ public class TreeBuilder {
 	
 	public void delete(int bNumber, String course) {
 		Node node = lookup(rootNode, bNumber);
-		node.removeCourse(course);
+		
+		if(node != null)
+			node.removeCourse(course);
 	}
 	
 	public Node lookup(Node rootNode, int bNumber) {

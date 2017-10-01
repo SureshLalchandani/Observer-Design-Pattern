@@ -49,7 +49,7 @@ public class Driver {
 		driver.processInput(readFileProcessor, originalTree, backupTree1, backupTree2);
 		
 		readFileProcessor = new FileProcessor(deleteFile, Permission.READ);
-		driver.processDelete(readFileProcessor, originalTree, backupTree1, backupTree2);
+		driver.processDelete(readFileProcessor, originalTree);
 		
 		Results results1 = new Results(outputFile1);
 		Results results2 = new Results(outputFile2);
@@ -72,7 +72,7 @@ public class Driver {
 			TreeBuilder backupTree1, 
 			TreeBuilder backupTree2) {
 
-		int count = 0;
+		int count = -1;
 
 		String line = null;
 
@@ -93,7 +93,12 @@ public class Driver {
 
 				Node nodeBackup1 = (Node) nodeOriginal.clone();
 				Node nodeBackup2 = (Node) nodeOriginal.clone();
+				
+				// Register both backup trees as observers
+				nodeOriginal.register(nodeBackup1);
+				nodeOriginal.register(nodeBackup2);
 
+				count++;
 				if (count == 0) {
 					originalTree.setRootNode(nodeOriginal);;
 					backupTree1.setRootNode(nodeBackup1);
@@ -128,12 +133,7 @@ public class Driver {
 	 * @param backupTree1
 	 * @param backupTree2
 	 */
-	private void processDelete(FileProcessor readFileProcessor, 
-			TreeBuilder originalTree, 
-			TreeBuilder backupTree1, 
-			TreeBuilder backupTree2) {
-
-		int count = 0;
+	private void processDelete(FileProcessor readFileProcessor, TreeBuilder originalTree) {
 
 		String line = null;
 
@@ -149,33 +149,10 @@ public class Driver {
 				int bNumber = Integer.parseInt(components[0]);
 				String course = components[1];
 
-				Node nodeOriginal  = new Node(bNumber);
-				nodeOriginal.addCourse(course);
+				originalTree.delete(bNumber, course);
 
-				Node nodeBackup1 = (Node) nodeOriginal.clone();
-				Node nodeBackup2 = (Node) nodeOriginal.clone();
-
-				if (count == 0) {
-					originalTree.setRootNode(nodeOriginal);;
-					backupTree1.setRootNode(nodeBackup1);
-					backupTree2.setRootNode(nodeBackup2);
-
-					continue;
-				}
-
-				originalTree.addNode(nodeOriginal);
-				backupTree1.addNode(nodeBackup1);
-				backupTree2.addNode(nodeBackup2);
-
-
-			} catch(NumberFormatException | CloneNotSupportedException ex) {
-
-				if (ex instanceof NumberFormatException) {
-					System.err.println("Driver:main - Number Format Exception Occured :: "  + ex.getLocalizedMessage());
-				} else if (ex instanceof CloneNotSupportedException) {
-					System.err.println("Driver:main - CloneNotSupportedException Occured :: "  + ex.getLocalizedMessage());
-				}
-
+			} catch(NumberFormatException ex) {
+				System.err.println("Driver:main - Number Format Exception Occured :: "  + ex.getLocalizedMessage());
 				System.exit(0);
 			}
 		}

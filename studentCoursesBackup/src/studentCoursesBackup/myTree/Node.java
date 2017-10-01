@@ -149,11 +149,11 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 		Node node = new Node(this.bNumber);
 		node.courses.addAll(this.courses);
 		
-		if(this.leftNode != null) 
-			node.leftNode = (Node) this.leftNode.clone();
-		
-		if(this.rightNode != null)
-			node.rightNode = (Node) this.rightNode.clone();
+//		if(this.leftNode != null) 
+//			node.leftNode = (Node) this.leftNode.clone();
+//		
+//		if(this.rightNode != null)
+//			node.rightNode = (Node) this.rightNode.clone();
 		
 		return node;
 	}
