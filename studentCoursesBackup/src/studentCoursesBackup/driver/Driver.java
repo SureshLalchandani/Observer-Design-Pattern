@@ -3,6 +3,7 @@ package studentCoursesBackup.driver;
 import studentCoursesBackup.myTree.Node;
 import studentCoursesBackup.util.FileProcessor;
 import studentCoursesBackup.util.FileProcessor.Permission;
+import studentCoursesBackup.util.Results;
 import studentCoursesBackup.util.TreeBuilder;
 
 public class Driver {
@@ -31,6 +32,10 @@ public class Driver {
 
 		String inputFile = args[0];
 		String deleteFile = args[1];
+		
+		String outputFile1 = args[2];
+		String outputFile2 = args[3];
+		String outputFile3 = args[4];
 
 
 		//File Read and purge into ArrayList
@@ -45,7 +50,14 @@ public class Driver {
 		
 		readFileProcessor = new FileProcessor(deleteFile, Permission.READ);
 		driver.processDelete(readFileProcessor, originalTree, backupTree1, backupTree2);
-
+		
+		Results results1 = new Results(outputFile1);
+		Results results2 = new Results(outputFile2);
+		Results results3 = new Results(outputFile3);
+		
+		originalTree.printNodes(results1);
+		backupTree1.printNodes(results2);
+		backupTree2.printNodes(results3);
 	}
 
 	/**
