@@ -169,7 +169,7 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 		StringBuilder builder = new StringBuilder();	
 		
 		builder.append(bNumber);
-		builder.append(":");
+		builder.append(": ");
 		
 		for(String course : courses) {
 			builder.append(course+" ");	
