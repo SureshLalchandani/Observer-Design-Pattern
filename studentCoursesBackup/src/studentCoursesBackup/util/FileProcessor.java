@@ -97,7 +97,7 @@ public class FileProcessor {
 
 		try {
 			for(String line : lines ) {
-				writer.append(line);
+				writer.append(line+"\n");
 			}
 		} catch (IOException e) {
 			isSuccess = false;

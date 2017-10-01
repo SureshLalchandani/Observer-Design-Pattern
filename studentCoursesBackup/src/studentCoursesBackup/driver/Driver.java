@@ -58,7 +58,6 @@ public class Driver {
 		originalTree.printNodes(results1);
 		backupTree1.printNodes(results2);
 		backupTree2.printNodes(results3);
-		
 	}
 
 	/**
