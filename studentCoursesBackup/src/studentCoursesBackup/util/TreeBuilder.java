@@ -34,7 +34,24 @@ public class TreeBuilder {
 	}
 	
 	public void delete(int bNumber, String course) {
+		Node node = lookup(rootNode, bNumber);
+		node.removeCourse(course);
+	}
+	
+	public Node lookup(Node rootNode, int bNumber) {
+		Node toReturn = null;
 		
+		if (rootNode == null) return null;
+		
+		if(rootNode.getbNumber() == bNumber) {
+			toReturn = rootNode;
+		} else if(rootNode.getbNumber() > bNumber) {
+			toReturn = lookup(rootNode.getLeftNode(), bNumber);
+		} else {
+			toReturn = lookup(rootNode.getRightNode(), bNumber);
+		}
+		
+		return toReturn;
 	}
 	
 	public void printNodes(Results results) {

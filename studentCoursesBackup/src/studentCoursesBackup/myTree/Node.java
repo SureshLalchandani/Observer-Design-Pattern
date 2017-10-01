@@ -1,7 +1,9 @@
 package studentCoursesBackup.myTree;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Node implements ObserverI, SubjectI, Cloneable {
 
@@ -11,7 +13,7 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 	Node rightNode;
 
 	int bNumber;
-	List<String> courses = null;
+	Set<String> courses = null;
 	
 	@SuppressWarnings("unused")
 	private Node() {
@@ -27,7 +29,47 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 		this.bNumber = bNumber;
 		this.leftNode = null;
 		this.rightNode = null;
-		this.courses = new ArrayList<String>();
+		this.courses = new HashSet<String>();
+	}
+	
+	/**
+	 * Get bNumber
+	 * @return bNumber
+	 */
+	public int getbNumber() {
+		return bNumber;
+	}
+	
+	/**
+	 * Getter Method for Left Node 
+	 * @return Node
+	 */
+	public Node getLeftNode() {
+		return leftNode;
+	}
+	
+	/**
+	 * Setter method for LeftNode
+	 * @param leftNode
+	 */
+	public void setLeftNode(Node leftNode) {
+		this.leftNode = leftNode;
+	}
+	
+	/**
+	 * Getter Method for Right Node
+	 * @return Node
+	 */
+	public Node getRightNode() {
+		return rightNode;
+	}
+	
+	/**
+	 * Setter method for Right Node 
+	 * @param rightNode
+	 */
+	public void setRightNode(Node rightNode) {
+		this.rightNode = rightNode;
 	}
 	
 	
@@ -45,11 +87,24 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 	 * @return <b>true</b> if this BNumber was registered for the given course, otherwise <b>false</b>
 	 */
 	public boolean removeCourse(String course) {
-		return courses.remove(course);
+		boolean result = courses.remove(course);
+		
+		if(result) {
+			broadcastChanges();
+		}
+		
+		return result;
 	}
 	
+	/**
+	 * This merges the list of courses from source node <b>(Parameter)</b> to current node 
+	 * if both nodes have same bNumber. Result of this merging would be union of two lists.
+	 * @param node
+	 */
 	public void merge(Node node) {
+		if(node.bNumber != this.bNumber) return;
 		
+		this.courses.addAll(node.courses);
 	}
 	
 
@@ -88,6 +143,7 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 		}
 	}
 	
+	
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		Node node = new Node(this.bNumber);
@@ -99,32 +155,7 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 		if(this.rightNode != null)
 			node.rightNode = (Node) this.rightNode.clone();
 		
-		
-		
 		return node;
-	}
-	
-	/*Getter & Setter Methods*/
-	
-	public int getbNumber() {
-		return bNumber;
-	}
-	
-	public Node getLeftNode() {
-		return leftNode;
-	}
-	
-	public void setLeftNode(Node leftNode) {
-		this.leftNode = leftNode;
-	}
-	
-	public Node getRightNode() {
-		return rightNode;
-	}
-	
-	
-	public void setRightNode(Node rightNode) {
-		this.rightNode = rightNode;
 	}
 	
 	
