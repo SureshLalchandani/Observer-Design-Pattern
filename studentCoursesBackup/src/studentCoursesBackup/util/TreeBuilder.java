@@ -57,7 +57,17 @@ public class TreeBuilder {
 	}
 	
 	public void printNodes(Results results) {
+		printInAscendingOrder(rootNode, results);
+	}
+	
+	private void printInAscendingOrder(Node node, Results result) {
+		if(node == null) return;
 		
+		printInAscendingOrder(node.getLeftNode(), result);
+		
+		result.storeNewResult(node.getbNumber() + ":" + node.getCourses());
+		
+		printInAscendingOrder(node.getRightNode(), result);
 	}
 
 }

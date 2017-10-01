@@ -82,6 +82,14 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 	}
 	
 	/**
+	 * Getter method for courses
+	 * @return list of courses
+	 */
+	public Set<String> getCourses() {
+		return courses;
+	}
+	
+	/**
 	 * Unregister this BNumber from given course and remove course from list
 	 * @param course
 	 * @return <b>true</b> if this BNumber was registered for the given course, otherwise <b>false</b>
