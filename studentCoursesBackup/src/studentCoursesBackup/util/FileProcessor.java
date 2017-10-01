@@ -9,6 +9,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Helper class to process READ and WRITE operations on file
+ * @author suresh
+ *
+ */
 public class FileProcessor {
 	public enum Permission {
 		READ, WRITE
@@ -175,11 +180,18 @@ public class FileProcessor {
 	}
 
 
-	//Setters
+	/**
+	 * Setter method for file path
+	 * @param filePath
+	 */
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
 
+	/**
+	 * Setter method for setting permission
+	 * @param permission
+	 */
 	public void setPermission(Permission permission) {
 		this.permission = permission;
 	}

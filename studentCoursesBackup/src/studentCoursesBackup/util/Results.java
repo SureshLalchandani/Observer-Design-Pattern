@@ -5,6 +5,12 @@ import java.util.List;
 
 import studentCoursesBackup.util.FileProcessor.Permission;
 
+/**
+ * Class to store all results in string format and process those results to write in
+ * a file or print on console
+ * @author suresh
+ *
+ */
 public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 
 	List<String> testResults;

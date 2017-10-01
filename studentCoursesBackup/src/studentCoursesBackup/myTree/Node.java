@@ -5,6 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Class that represents Node of a tree.
+ * @author suresh
+ *
+ */
 public class Node implements ObserverI, SubjectI, Cloneable {
 
 	List<ObserverI> observers = new ArrayList<ObserverI>();
@@ -156,13 +161,6 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 	public Object clone() throws CloneNotSupportedException {
 		Node node = new Node(this.bNumber);
 		node.courses.addAll(this.courses);
-		
-//		if(this.leftNode != null) 
-//			node.leftNode = (Node) this.leftNode.clone();
-//		
-//		if(this.rightNode != null)
-//			node.rightNode = (Node) this.rightNode.clone();
-		
 		return node;
 	}
 	
