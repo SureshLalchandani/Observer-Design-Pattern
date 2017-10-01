@@ -65,7 +65,7 @@ public class TreeBuilder {
 		
 		printInAscendingOrder(node.getLeftNode(), result);
 		
-		result.storeNewResult(node.getbNumber() + ":" + node.getCourses());
+		result.storeNewResult(node.toString());
 		
 		printInAscendingOrder(node.getRightNode(), result);
 	}

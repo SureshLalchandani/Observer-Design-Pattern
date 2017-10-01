@@ -166,5 +166,19 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 		return node;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();	
+		
+		builder.append(bNumber);
+		builder.append(":");
+		
+		for(String course : courses) {
+			builder.append(course+" ");	
+		}
+		
+		return builder.toString();
+	}
+	
 	
 }
