@@ -87,7 +87,6 @@ public class TreeBuilder {
 	 */
 	public void printNodes(Results results) {
 		printInAscendingOrder(rootNode, results);
-		
 		results.writeToFile();
 	}
 	
