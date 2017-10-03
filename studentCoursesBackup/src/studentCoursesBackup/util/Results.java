@@ -33,7 +33,6 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 		testResults.add(resultString);
 	}
 
-	//FileDisplayInterface
 	@Override
 	public void writeToFile() {
 		if (testResults == null || testResults.isEmpty()) return;
@@ -50,7 +49,6 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	}
 
 
-	//StdoutDisplayInterface
 	@Override
 	public void writeToStdout() {
 		if (testResults == null || testResults.isEmpty()) return;

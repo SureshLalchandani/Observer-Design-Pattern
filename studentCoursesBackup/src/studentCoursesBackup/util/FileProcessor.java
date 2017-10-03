@@ -15,6 +15,12 @@ import java.util.List;
  *
  */
 public class FileProcessor {
+	
+	/**
+	 * Enum that will define the use of FileProcess whether it's a File READ operation or WRITE operation.
+	 * @author suresh
+	 *
+	 */
 	public enum Permission {
 		READ, WRITE
 	}
@@ -24,6 +30,12 @@ public class FileProcessor {
 	BufferedWriter writer;
 	Permission permission;
 
+	/**
+	 * Parameterized constructor for binding a File Processor instance with file and access permission
+	 * i.e Either WRITE or READ
+	 * @param filePath
+	 * @param permission
+	 */
 	public FileProcessor(String filePath, Permission permission) {
 		this.filePath = filePath;
 		this.permission = permission;

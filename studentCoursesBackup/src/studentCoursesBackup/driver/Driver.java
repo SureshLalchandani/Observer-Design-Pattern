@@ -6,9 +6,15 @@ import studentCoursesBackup.util.FileProcessor.Permission;
 import studentCoursesBackup.util.Results;
 import studentCoursesBackup.util.TreeBuilder;
 
+/**
+ * This is a driver/entry of the program i.e main class.
+ * @author suresh
+ *
+ */
 public class Driver {
 
 	/**
+	 * Entry of the program : Performs command line argument check and validation. The process the inputs as per requirement. 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -38,23 +44,27 @@ public class Driver {
 		String outputFile3 = args[4];
 
 
-		//File Read and purge into ArrayList
+		/*File Read and purge into ArrayList*/
 		FileProcessor readFileProcessor = new FileProcessor(inputFile, Permission.READ);
 
+		/*Create tree instances and will fill the tree below*/
 		TreeBuilder originalTree = new TreeBuilder();
 		TreeBuilder backupTree1 = new TreeBuilder();
 		TreeBuilder backupTree2 = new TreeBuilder();
 
+		
 		Driver driver = new Driver();
 		driver.processInput(readFileProcessor, originalTree, backupTree1, backupTree2);
 		
 		readFileProcessor = new FileProcessor(deleteFile, Permission.READ);
 		driver.processDelete(readFileProcessor, originalTree);
 		
+		/*Create Result instances and bind it with file paths to write results in the files*/
 		Results results1 = new Results(outputFile1);
 		Results results2 = new Results(outputFile2);
 		Results results3 = new Results(outputFile3);
 		
+		/*Fill the results with values of Nodes present in corresponding trees.*/
 		originalTree.printNodes(results1);
 		backupTree1.printNodes(results2);
 		backupTree2.printNodes(results3);
