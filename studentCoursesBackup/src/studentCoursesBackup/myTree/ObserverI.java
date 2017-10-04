@@ -1,5 +1,10 @@
 package studentCoursesBackup.myTree;
 
+/**
+ * An Interface that needs to be implemented by Node class in order to be registered as
+ * observer and get notified whenever there is update
+ * @author suresh
+ */
 public interface ObserverI {
 	
 	/**

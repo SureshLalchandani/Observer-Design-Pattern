@@ -103,7 +103,7 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 		boolean result = courses.remove(course);
 		
 		if(result) {
-			broadcastChanges();
+			notifyAllObservers();
 		}
 		
 		return result;
@@ -134,7 +134,7 @@ public class Node implements ObserverI, SubjectI, Cloneable {
 	}
 
 	@Override
-	public void broadcastChanges() {
+	public void notifyAllObservers() {
 		for(ObserverI observer : observers) {
 			observer.update(this);
 		}

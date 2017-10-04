@@ -2,8 +2,6 @@ package studentCoursesBackup.driver;
 
 import studentCoursesBackup.processor.DeleteProcessor;
 import studentCoursesBackup.processor.InputProcessor;
-import studentCoursesBackup.util.FileProcessor;
-import studentCoursesBackup.util.FileProcessor.Permission;
 import studentCoursesBackup.util.Results;
 import studentCoursesBackup.util.TreeBuilder;
 
@@ -51,13 +49,11 @@ public class Driver {
 		TreeBuilder backupTree2 = new TreeBuilder();
 
 		/*File Read and purge into ArrayList*/
-		FileProcessor inputFileProcessor = new FileProcessor(inputFile, Permission.READ);
-		InputProcessor inputProcessor = new InputProcessor(inputFileProcessor, originalTree, backupTree1, backupTree2);
+		InputProcessor inputProcessor = new InputProcessor(inputFile, originalTree, backupTree1, backupTree2);
 		inputProcessor.processInput();
 		
 		/*Read Delete file and update courses*/
-		FileProcessor deleteFileProcessor = new FileProcessor(deleteFile, Permission.READ);
-		DeleteProcessor deleteProcessor = new DeleteProcessor(deleteFileProcessor, originalTree);
+		DeleteProcessor deleteProcessor = new DeleteProcessor(deleteFile, originalTree);
 		deleteProcessor.processDelete();
 		
 		/*Create Result instances and bind it with file paths to write results in the files*/

@@ -2,6 +2,7 @@ package studentCoursesBackup.processor;
 
 import studentCoursesBackup.util.FileProcessor;
 import studentCoursesBackup.util.TreeBuilder;
+import studentCoursesBackup.util.FileProcessor.Permission;
 
 /**
  * Wrapper class that handles Data from Delete file and Updates the Trees accordingly
@@ -9,18 +10,17 @@ import studentCoursesBackup.util.TreeBuilder;
  *
  */
 public class DeleteProcessor {
-
-	FileProcessor readFileProcessor; 
+	String filePath;
 	TreeBuilder originalTree;
 	
 	/**
 	 * Parameterized constructor to create instance of this class and initializes member
 	 * variables with references given
-	 * @param readFileProcessor
+	 * @param filePath
 	 * @param originalTree
 	 */
-	public DeleteProcessor(FileProcessor readFileProcessor, TreeBuilder originalTree) {
-		this.readFileProcessor = readFileProcessor;
+	public DeleteProcessor(String filePath, TreeBuilder originalTree) {
+		this.filePath = filePath;
 		this.originalTree = originalTree;
 	}
 	
@@ -32,7 +32,9 @@ public class DeleteProcessor {
 
 		String line = null;
 
-		while((line = readFileProcessor.readLine()) != null) {
+		FileProcessor deleteFileProcessor = new FileProcessor(filePath, Permission.READ);
+		deleteFileProcessor.setPermitEmptyFile(true);
+		while((line = deleteFileProcessor.readLine()) != null) {
 			try {
 
 				if(line == null || line.trim().length() == 0) {

@@ -29,6 +29,7 @@ public class FileProcessor {
 	BufferedReader reader;
 	BufferedWriter writer;
 	Permission permission;
+	boolean permitEmptyFile = false;
 
 	/**
 	 * Parameterized constructor for binding a File Processor instance with file and access permission
@@ -41,6 +42,13 @@ public class FileProcessor {
 		this.permission = permission;
 	} 
 
+	/**
+	 * Setter method for flag to allow Empty File
+	 * @param permitEmptyFile
+	 */
+	public void setPermitEmptyFile(boolean permitEmptyFile) {
+		this.permitEmptyFile = permitEmptyFile;
+	}
 
 
 	/**
@@ -60,13 +68,12 @@ public class FileProcessor {
 			switch (permission) {
 			case READ:
 
-				// Incase file is empty
-				if(file.length() == 0) {
-					System.err.println("File is Empty!");
+				/*Exit application if file is empty and empty file is not permitted*/
+				if(file.length() == 0 && !permitEmptyFile) {
+					System.err.println("\"" + file.getName() + "\"" + " - File is Empty!");
 					System.exit(1);
 					return false;
 				}
-
 				
 				if (reader == null) {
 					FileReader fileReader = new FileReader(file);

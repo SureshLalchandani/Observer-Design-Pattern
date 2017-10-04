@@ -13,7 +13,7 @@ import studentCoursesBackup.util.FileProcessor.Permission;
  */
 public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 
-	List<String> testResults;
+	List<String> testResults = new ArrayList<String>();;
 	String outputFilePath;
 
 	public Results(String outputFilePath) {
@@ -26,22 +26,11 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	 * @param resultString
 	 */
 	public void storeNewResult(String resultString) {
-		if(testResults == null) {
-			testResults = new ArrayList<String>();
-		}
-		
 		testResults.add(resultString);
 	}
 
 	@Override
 	public void writeToFile() {
-		if (testResults == null || testResults.isEmpty()) return;
-		
-		
-		if(outputFilePath == null || outputFilePath.length() == 0) {
-			return;
-		}
-
 		FileProcessor fileProcessor = new FileProcessor(outputFilePath, Permission.WRITE);
 		fileProcessor.writeLines(testResults);
 		
@@ -51,8 +40,6 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 
 	@Override
 	public void writeToStdout() {
-		if (testResults == null || testResults.isEmpty()) return;
-		
 		for (String line : testResults) {
 			System.out.println(line);
 		}

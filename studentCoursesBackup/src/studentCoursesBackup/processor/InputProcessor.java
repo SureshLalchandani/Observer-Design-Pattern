@@ -3,13 +3,14 @@ package studentCoursesBackup.processor;
 import studentCoursesBackup.myTree.Node;
 import studentCoursesBackup.util.FileProcessor;
 import studentCoursesBackup.util.TreeBuilder;
+import studentCoursesBackup.util.FileProcessor.Permission;
 
 /**
  * Wrapper class to process data from Input File and Form a Tree out of it.
  * @author suresh
  */
 public class InputProcessor {
-	FileProcessor readFileProcessor; 
+	String filePath; 
 	TreeBuilder originalTree;
 	TreeBuilder backupTree1;
 	TreeBuilder backupTree2;
@@ -22,11 +23,11 @@ public class InputProcessor {
 	 * @param backupTree1
 	 * @param backupTree2
 	 */
-	public InputProcessor(FileProcessor readFileProcessor, 
+	public InputProcessor(String filePath, 
 			TreeBuilder originalTree, 
 			TreeBuilder backupTree1, 
 			TreeBuilder backupTree2) {
-		this.readFileProcessor = readFileProcessor;
+		this.filePath = filePath;
 		this.originalTree = originalTree;
 		this.backupTree1 = backupTree1;
 		this.backupTree2 = backupTree2;
@@ -38,14 +39,13 @@ public class InputProcessor {
 	 * node and add into backup trees
 	 */
 	public void processInput() {
-
 		int count = -1;
-
 		String line = null;
 
+		FileProcessor readFileProcessor = new FileProcessor(filePath, Permission.READ);
+		readFileProcessor.setPermitEmptyFile(true);
 		while((line = readFileProcessor.readLine()) != null) {
 			try {
-
 				if(line == null || line.trim().length() == 0) {
 					continue;
 				}
@@ -80,7 +80,6 @@ public class InputProcessor {
 
 
 			} catch(NumberFormatException | CloneNotSupportedException ex) {
-
 				if (ex instanceof NumberFormatException) {
 					System.err.println("Driver:main - Number Format Exception Occured :: "  + ex.getLocalizedMessage());
 				} else if (ex instanceof CloneNotSupportedException) {

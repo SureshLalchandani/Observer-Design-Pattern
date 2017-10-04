@@ -1,5 +1,10 @@
 package studentCoursesBackup.myTree;
 
+/**
+ * An Interface that needs to be implemented by Node class in order to maintain pool of
+ * it's observer and notify them whenever required
+ * @author suresh
+ */
 public interface SubjectI {
 	
 	
@@ -22,6 +27,6 @@ public interface SubjectI {
 	 * If any change occurs this method will notify all registered observers about updates.
 	 * @void
 	 */
-	public void broadcastChanges();
+	public void notifyAllObservers();
 
 }
